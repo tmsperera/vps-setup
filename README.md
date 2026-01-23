@@ -4,13 +4,13 @@ If you want to set up a production ready VPS, there are a few steps you should t
 
 This document goes through the list of steps that I personally take.
 
-["Setting up a production ready VPS is a lot easier than I thought." - dreamsofcode.io.com](https://blog.dreamsofcode.io/setting-up-a-production-ready-vps-is-a-lot-easier-than-i-thought)
+References:
+    
+- ["Setting up a production ready VPS is a lot easier than I thought." - blog](https://blog.dreamsofcode.io/setting-up-a-production-ready-vps-is-a-lot-easier-than-i-thought)
+- ["Setting up a production ready VPS is a lot easier than I thought." - youtube](https://www.youtube.com/watch?v=F-9KWQByeU0)
+- [vps-setup.md](https://github.com/dreamsofcode-io/zenstats/blob/main/docs/vps-setup.md)
 
-["Setting up a production ready VPS is a lot easier than I thought." - @dreamsofcode - YouTube](https://www.youtube.com/watch?v=F-9KWQByeU0)
-
-[vps-setup.md - @dreamsofcode-io - GitHub](https://github.com/dreamsofcode-io/zenstats/blob/main/docs/vps-setup.md)
-
-## Set Up VPS using the Script (Idempotent)
+## Set Up VPS using one time Script
 
 Provisions a Linux VPS with Docker, security hardening, and an application
 user. Safe to run multiple times (idempotent).
@@ -34,12 +34,12 @@ user. Safe to run multiple times (idempotent).
 ### Usage (recommended):
 
 ```
-    curl -fsSL <SCRIPT_URL> | sudo -E \
-        APP_USER="appuser" \
-        APP_USER_PASSWORD="StrongPasswordHere" \
-        SSH_PORT=22 \
-        SWAP_SIZE=2G \
-        bash
+curl -fsSL <SCRIPT_URL> | sudo -E \
+    APP_USER="appuser" \
+    APP_USER_PASSWORD="StrongPasswordHere" \
+    SSH_PORT=22 \
+    SWAP_SIZE=2G \
+    bash
 ```
 
 1. Log in as root
