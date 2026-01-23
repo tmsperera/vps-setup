@@ -35,9 +35,10 @@ user. Safe to run multiple times (idempotent).
 ### Usage
 
 #### 1. Log in as root
-    ```
-    ssh -i ~/.ssh/id_ed25519 root@<server-ip>
-    ```
+
+```
+ssh -i ~/.ssh/id_ed25519 root@<server-ip>
+```
 
 #### 2. Run the setup script
 
