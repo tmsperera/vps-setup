@@ -153,7 +153,7 @@ sshd -t
 systemctl restart ssh
 
 ########################################
-# FAIL2BAN (IDEMPOTENT)
+# FAIL2BAN
 ########################################
 echo "🔒 Installing Fail2Ban..."
 
