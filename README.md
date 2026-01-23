@@ -23,8 +23,8 @@ user. Safe to run multiple times (idempotent).
 
 ### Required environment variables
 
-1. `APP_USER` - Name of the application user to create
-2. `APP_USER_PASSWORD` - Password for the application user
+1. `NEW_USER` - Name of the application user to create
+2. `NEW_USER_PASSWORD` - Password for the application user
 
 ### Optional environment variables
 
@@ -35,8 +35,8 @@ user. Safe to run multiple times (idempotent).
 
 ```
 curl -fsSL <SCRIPT_URL> | sudo -E \
-    APP_USER="appuser" \
-    APP_USER_PASSWORD="StrongPasswordHere" \
+    NEW_USER="appuser" \
+    NEW_USER_PASSWORD="StrongPasswordHere" \
     SSH_PORT=22 \
     SWAP_SIZE=2G \
     bash
@@ -53,16 +53,33 @@ curl -fsSL <SCRIPT_URL> | sudo -E \
 
     ```
     curl -fsSL https://raw.githubusercontent.com/tmsperera/vps-setup/refs/heads/main/setup.sh | sudo -E \
-    APP_USER="appuser" \
-    APP_USER_PASSWORD="secret" \
+    NEW_USER="appuser" \
+    NEW_USER_PASSWORD="secret" \
     SSH_PORT=22 \
     SWAP_SIZE=2G \
     bash
     ```
 
+3. Install Docker and start the service (Optional)
+   1. Install Docker
+      > [https://docs.docker.com/engine/install/ubuntu/](https://docs.docker.com/engine/install/ubuntu/)
+      ```
+      curl -fsSL https://raw.githubusercontent.com/tmsperera/vps-setup/refs/heads/main/setup-docker.sh | sudo -E bash
+      ```
+   2. Manage Docker as a non-root user
+      > [https://docs.docker.com/engine/install/linux-postinstall](https://docs.docker.com/engine/install/linux-postinstall)
+      ```
+      sudo usermod -aG docker <non_root_user>
+      ```
+
+4. Install Git (Optional)
+   ```
+   sudo apt install git
+   ``` 
+
 > NOTES:
 > - Re-running this script will NOT duplicate users, keys, or services
-> - SSH keys from root will be copied to APP_USER
+> - SSH keys from the root will be copied to NEW_USER
 
 ## Manually Set Up VPS
 

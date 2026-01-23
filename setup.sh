@@ -4,8 +4,8 @@ set -euo pipefail
 ########################################
 # CONFIG
 ########################################
-: "${APP_USER:=appuser}"
-: "${APP_USER_PASSWORD:?APP_USER_PASSWORD is required}"
+: "${NEW_USER:=appuser}"
+: "${NEW_USER_PASSWORD:?NEW_USER_PASSWORD is required}"
 : "${SSH_PORT:=22}"
 : "${SWAP_SIZE:=2G}"
 
@@ -57,14 +57,14 @@ fi
 ########################################
 # USER
 ########################################
-if ! id "$APP_USER" &>/dev/null; then
-  echo "👤 Creating user: $APP_USER"
+if ! id "$NEW_USER" &>/dev/null; then
+  echo "👤 Creating user: $NEW_USER"
 
-  adduser --disabled-password --gecos "" --shell /bin/bash "$APP_USER"
-  echo "$APP_USER:$APP_USER_PASSWORD" | chpasswd
-  usermod -aG sudo "$APP_USER"
+  adduser --disabled-password --gecos "" --shell /bin/bash "$NEW_USER"
+  echo "$NEW_USER:$NEW_USER_PASSWORD" | chpasswd
+  usermod -aG sudo "$NEW_USER"
 else
-  echo "✅ User $APP_USER already exists"
+  echo "✅ User $NEW_USER already exists"
 fi
 
 ########################################
@@ -72,19 +72,19 @@ fi
 ########################################
 echo "🔐 Configuring SSH access..."
 
-install -d -m 700 /home/"$APP_USER"/.ssh
-install -m 600 /dev/null /home/"$APP_USER"/.ssh/authorized_keys
+install -d -m 700 /home/"$NEW_USER"/.ssh
+install -m 600 /dev/null /home/"$NEW_USER"/.ssh/authorized_keys
 
 if [ -f /root/.ssh/authorized_keys ]; then
   sort -u \
     /root/.ssh/authorized_keys \
-    /home/"$APP_USER"/.ssh/authorized_keys \
+    /home/"$NEW_USER"/.ssh/authorized_keys \
     > /tmp/authorized_keys.tmp
 
-  mv /tmp/authorized_keys.tmp /home/"$APP_USER"/.ssh/authorized_keys
+  mv /tmp/authorized_keys.tmp /home/"$NEW_USER"/.ssh/authorized_keys
 fi
 
-chown -R "$APP_USER":"$APP_USER" /home/"$APP_USER"/.ssh
+chown -R "$NEW_USER":"$NEW_USER" /home/"$NEW_USER"/.ssh
 
 ########################################
 # SSH HARDENING
@@ -151,54 +151,7 @@ ufw allow 443/tcp
 ufw --force enable
 
 ########################################
-# INSTALL GIT
-########################################
-echo "📦 Installing Git..."
-
-apt install -y git
-
-########################################
-# INSTALL DOCKER
-########################################
-if command -v docker >/dev/null 2>&1; then
-  echo "✅ Docker already installed"
-else
-  echo "🐳 Installing Docker..."
-
-  # Add Docker's official GPG key:
-  apt update
-  apt install -y ca-certificates curl
-  install -m 0755 -d /etc/apt/keyrings
-  curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
-  chmod a+r /etc/apt/keyrings/docker.asc
-
-  # Add the repository to Apt sources:
-  tee /etc/apt/sources.list.d/docker.sources <<EOF
-Types: deb
-URIs: https://download.docker.com/linux/ubuntu
-Suites: $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}")
-Components: stable
-Signed-By: /etc/apt/keyrings/docker.asc
-EOF
-
-  apt update
-
-  # Install docker latest version
-  apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-
-  # Enable and start Docker service
-  systemctl enable docker
-  systemctl start docker
-fi
-
-########################################
-# DOCKER GROUP
-########################################
-usermod -aG docker "$APP_USER"
-
-########################################
 # DONE
 ########################################
 echo "✅ VPS setup complete!"
-echo "➡️ ssh -p ${SSH_PORT} ${APP_USER}@<server-ip>"
-echo "ℹ️ Re-login required for docker group"
+echo "➡️ ssh -p ${SSH_PORT} ${NEW_USER}@<server-ip>"
