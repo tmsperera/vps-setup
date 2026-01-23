@@ -8,27 +8,59 @@ This document goes through the list of steps that I personally take.
 
 [vps-setup.md - @dreamsofcode-io - GitHub](https://github.com/dreamsofcode-io/zenstats/blob/main/docs/vps-setup.md)
 
-## Set Up VPS using the Script
+## Set Up VPS using the Script (Idempotent)
 
-### 1. Log in as root
+Provisions a Linux VPS with Docker, security hardening, and an application
+user. Safe to run multiple times (idempotent).
+
+### Requirements
+
+- Run as root (or via sudo)
+- Ubuntu / Debian based system
+- Internet access
+
+### Required environment variables
+
+1. `APP_USER` - Name of the application user to create
+2. `APP_USER_PASSWORD` - Password for the application user
+
+### Optional environment variables
+
+1. `SSH_PORT` - SSH port (default: 22)
+2. `SWAP_SIZE` - Swap size (example: 2G)
+
+### Usage (recommended):
 
 ```
-ssh -i ~/.ssh/id_ed25519 root@<server-ip>
+    curl -fsSL <SCRIPT_URL> | sudo -E \
+        APP_USER="appuser" \
+        APP_USER_PASSWORD="StrongPasswordHere" \
+        SSH_PORT=22 \
+        SWAP_SIZE=2G \
+        bash
 ```
 
-### 2. Run the setup script
+1. Log in as root
+    ```
+    ssh -i ~/.ssh/id_ed25519 root@<server-ip>
+    ```
 
-> [tmsperera/vps-setup/setup.sh](https://github.com/tmsperera/vps-setup/blob/main/setup.sh)
+2. Run the setup script
 
-```
-curl -fsSL https://raw.githubusercontent.com/tmsperera/vps-setup/refs/heads/main/setup.sh \
-| sudo \
-APP_USER="appuser" \
-APP_USER_PASSWORD="secret" \
-SSH_PORT=22 \
-SWAP_SIZE=2G \
-bash
-```
+    > [tmsperera/vps-setup/setup.sh](https://github.com/tmsperera/vps-setup/blob/main/setup.sh)
+
+    ```
+    curl -fsSL https://raw.githubusercontent.com/tmsperera/vps-setup/refs/heads/main/setup.sh | sudo -E \
+    APP_USER="appuser" \
+    APP_USER_PASSWORD="secret" \
+    SSH_PORT=22 \
+    SWAP_SIZE=2G \
+    bash
+    ```
+
+> NOTES:
+> - Re-running this script will NOT duplicate users, keys, or services
+> - SSH keys from root will be copied to APP_USER
 
 ## Manually Set Up VPS
 

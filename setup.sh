@@ -1,48 +1,4 @@
 #!/usr/bin/env bash
-#
-# ------------------------------------------------------------------------------
-# VPS SETUP SCRIPT (Idempotent)
-# ------------------------------------------------------------------------------
-#
-# DESCRIPTION:
-#   Provisions a Linux VPS with Docker, security hardening, and an application
-#   user. Safe to run multiple times (idempotent).
-#
-# REQUIREMENTS:
-#   - Run as root (or via sudo)
-#   - Ubuntu / Debian based system
-#   - Internet access
-#
-# REQUIRED ENVIRONMENT VARIABLES:
-#   APP_USER            Name of the application user to create
-#   APP_USER_PASSWORD   Password for the application user
-#
-# OPTIONAL ENVIRONMENT VARIABLES:
-#   SSH_PORT            SSH port (default: 22)
-#   SWAP_SIZE           Swap size (example: 2G)
-#
-# USAGE (recommended):
-#   curl -fsSL <SCRIPT_URL> | sudo -E \
-#     APP_USER="appuser" \
-#     APP_USER_PASSWORD="StrongPasswordHere" \
-#     SSH_PORT=22 \
-#     SWAP_SIZE=2G \
-#     bash
-#
-# EXAMPLE:
-#   curl -fsSL https://example.com/setup-vps.sh | sudo -E \
-#     APP_USER="appuser" \
-#     APP_USER_PASSWORD="220{}290><?Q" \
-#     SSH_PORT=22 \
-#     SWAP_SIZE=2G \
-#     bash
-#
-# NOTES:
-#   - Re-running this script will NOT duplicate users, keys, or services
-#   - SSH keys from root will be copied to APP_USER
-#
-# ------------------------------------------------------------------------------
-
 set -euo pipefail
 
 ########################################
