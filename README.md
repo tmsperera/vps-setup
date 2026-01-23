@@ -32,16 +32,7 @@ user. Safe to run multiple times (idempotent).
 3. `SSH_PORT` - (Optional) - SSH port (default: 22)
 4. `SWAP_SIZE` - (Optional) - Swap size (example: 2G)
 
-### Usage (recommended):
-
-```
-curl -fsSL <SCRIPT_URL> | sudo -E \
-    NEW_USER="appuser" \
-    NEW_USER_PASSWORD="StrongPasswordHere" \
-    SSH_PORT=22 \
-    SWAP_SIZE=2G \
-    bash
-```
+### Usage
 
 1. Log in as root
     ```
