@@ -144,10 +144,19 @@ echo "🔥 Configuring UFW..."
 apt update -y
 apt install -y ufw
 
+# Disable all incoming traffic by default
+ufw default deny incoming
+
+# Allow all outgoing traffic by default
+ufw default allow outgoing
+
+# Allow SSH (CRITICAL - do this before enabling the firewall)
 ufw allow "${SSH_PORT}/tcp"
+
 ufw allow 80/tcp
 ufw allow 443/tcp
 
+# Enable the firewall
 ufw --force enable
 
 ########################################
