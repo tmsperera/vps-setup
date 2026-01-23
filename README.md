@@ -25,15 +25,12 @@ user. Safe to run multiple times (idempotent).
 - Ubuntu / Debian based system
 - Internet access
 
-### Required environment variables
+### Environment variables
 
-1. `NEW_USER` - Name of the application user to create
-2. `NEW_USER_PASSWORD` - Password for the application user
-
-### Optional environment variables
-
-1. `SSH_PORT` - SSH port (default: 22)
-2. `SWAP_SIZE` - Swap size (example: 2G)
+1. `NEW_USER` - (Required) - Name of the application user to create
+2. `NEW_USER_PASSWORD` - (Required) - Password for the application user
+3. `SSH_PORT` - (Optional) - SSH port (default: 22)
+4. `SWAP_SIZE` - (Optional) - Swap size (example: 2G)
 
 ### Usage (recommended):
 
