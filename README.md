@@ -15,6 +15,10 @@ References:
 Provisions a Linux VPS with Docker, security hardening, and an application
 user. Safe to run multiple times (idempotent).
 
+> ℹ️
+> - Re-running those scripts will NOT duplicate users, keys, or services
+> - SSH keys from the root will be copied to NEW_USER
+
 ### Requirements
 
 - Run as root (or via sudo)
@@ -75,11 +79,7 @@ curl -fsSL <SCRIPT_URL> | sudo -E \
 4. Install Git (Optional)
    ```
    sudo apt install git
-   ``` 
-
-> NOTES:
-> - Re-running this script will NOT duplicate users, keys, or services
-> - SSH keys from the root will be copied to NEW_USER
+   ```
 
 ## Manually Set Up VPS
 
