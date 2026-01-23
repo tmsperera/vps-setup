@@ -6,9 +6,9 @@ This document goes through the list of steps that I personally take.
 
 References:
     
-- ["Setting up a production ready VPS is a lot easier than I thought." - blog](https://blog.dreamsofcode.io/setting-up-a-production-ready-vps-is-a-lot-easier-than-i-thought)
-- ["Setting up a production ready VPS is a lot easier than I thought." - youtube](https://www.youtube.com/watch?v=F-9KWQByeU0)
-- [vps-setup.md](https://github.com/dreamsofcode-io/zenstats/blob/main/docs/vps-setup.md)
+- [Setting up a production ready VPS is a lot easier than I thought.](https://blog.dreamsofcode.io/setting-up-a-production-ready-vps-is-a-lot-easier-than-i-thought) - blog
+- [Setting up a production ready VPS is a lot easier than I thought.](https://www.youtube.com/watch?v=F-9KWQByeU0) - youtube
+- [vps-setup.md](https://github.com/dreamsofcode-io/zenstats/blob/main/docs/vps-setup.md) by github.com/dreamsofcode-io
 
 ## Set Up VPS using one time Script
 
@@ -65,6 +65,8 @@ curl -fsSL <SCRIPT_URL> | sudo -E \
 > - SSH keys from root will be copied to APP_USER
 
 ## Manually Set Up VPS
+
+Reference: [vps-setup.md](https://github.com/dreamsofcode-io/zenstats/blob/main/docs/vps-setup.md) by github.com/dreamsofcode-io
 
 ### 1. Create a New User with Sudo Permissions:
 
