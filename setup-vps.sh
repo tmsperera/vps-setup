@@ -103,7 +103,7 @@ config_sshd () {
 
 config_sshd PermitRootLogin no
 config_sshd PasswordAuthentication no
-config_sshd Port "$SSH_PORT"
+config_sshd Port "${SSH_PORT}"
 
 sshd -t
 systemctl restart ssh
@@ -144,7 +144,7 @@ echo "🔥 Configuring UFW..."
 apt update -y
 apt install -y ufw
 
-ufw allow "$SSH_PORT/tcp"
+ufw allow "${SSH_PORT}/tcp"
 ufw allow 80/tcp
 ufw allow 443/tcp
 

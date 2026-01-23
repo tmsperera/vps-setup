@@ -6,8 +6,9 @@ This document goes through the list of steps that I personally take.
 
 References:
     
-- [Setting up a production ready VPS is a lot easier than I thought.](https://blog.dreamsofcode.io/setting-up-a-production-ready-vps-is-a-lot-easier-than-i-thought) - blog
-- [Setting up a production ready VPS is a lot easier than I thought.](https://www.youtube.com/watch?v=F-9KWQByeU0) - youtube
+- [Setting up a Production-Ready VPS from Scratch](https://blog.dreamsofcode.io/setting-up-a-production-ready-vps-is-a-lot-easier-than-i-thought) - blog
+- [Setting up a production ready VPS is a lot easier than I thought.](https://www.youtube.com/watch?v=F-9KWQByeU0) - YouTube
+- [Setting up a production ready VPS is a lot easier than I thought.](https://dreamsofcode.io/blog/setting-up-a-production-ready-vps-from-scratch) - blog
 - [vps-setup.md](https://github.com/dreamsofcode-io/zenstats/blob/main/docs/vps-setup.md) by github.com/dreamsofcode-io
 
 ## Set Up VPS using scripts
