@@ -10,7 +10,7 @@ References:
 - [Setting up a production ready VPS is a lot easier than I thought.](https://www.youtube.com/watch?v=F-9KWQByeU0) - youtube
 - [vps-setup.md](https://github.com/dreamsofcode-io/zenstats/blob/main/docs/vps-setup.md) by github.com/dreamsofcode-io
 
-## Set Up VPS using one time Script
+## Set Up VPS using scripts
 
 Provisions a Linux VPS with Docker, security hardening, and an application
 user. Safe to run multiple times (idempotent).
@@ -34,37 +34,43 @@ user. Safe to run multiple times (idempotent).
 
 ### Usage
 
-1. Log in as root
+#### 1. Log in as root
     ```
     ssh -i ~/.ssh/id_ed25519 root@<server-ip>
     ```
 
-2. Run the setup script
+#### 2. Run the setup script
 
-    > [tmsperera/vps-setup/setup-vps.sh](https://github.com/tmsperera/vps-setup/blob/main/setup-vps.sh)
+> [tmsperera/vps-setup/setup-vps.sh](https://github.com/tmsperera/vps-setup/blob/main/setup-vps.sh)
 
-    ```
-    curl -fsSL https://raw.githubusercontent.com/tmsperera/vps-setup/refs/heads/main/setup-vps.sh | sudo -E \
-    NEW_USER="appuser" \
-    NEW_USER_PASSWORD="secret" \
-    SSH_PORT=22 \
-    SWAP_SIZE=2G \
-    bash
-    ```
+```
+curl -fsSL https://raw.githubusercontent.com/tmsperera/vps-setup/refs/heads/main/setup-vps.sh | sudo -E \
+NEW_USER="appuser" \
+NEW_USER_PASSWORD="secret" \
+SSH_PORT=22 \
+SWAP_SIZE=2G \
+bash
+```
 
-3. Install Docker and start the service (Optional)
-   1. Install Docker
-      > [https://docs.docker.com/engine/install/ubuntu/](https://docs.docker.com/engine/install/ubuntu/)
-      ```
-      curl -fsSL https://raw.githubusercontent.com/tmsperera/vps-setup/refs/heads/main/setup-docker.sh | sudo -E bash
-      ```
-   2. Manage Docker as a non-root user
-      > [https://docs.docker.com/engine/install/linux-postinstall](https://docs.docker.com/engine/install/linux-postinstall)
-      ```
-      sudo usermod -aG docker <non_root_user>
-      ```
+#### 3. Install Docker (Optional)
 
-4. Install Git (Optional)
+1. Install Docker and start the service
+
+   ```
+   curl -fsSL https://raw.githubusercontent.com/tmsperera/vps-setup/refs/heads/main/setup-docker.sh | sudo -E bash
+   ```
+
+   > 🔗 [https://docs.docker.com/engine/install/ubuntu/](https://docs.docker.com/engine/install/ubuntu/)
+
+2. Allowing managing Docker as a non-root user
+
+   ```
+   sudo usermod -aG docker <non_root_user>
+   ```
+
+   > 🔗 [https://docs.docker.com/engine/install/linux-postinstall](https://docs.docker.com/engine/install/linux-postinstall)
+
+#### 4. Install Git (Optional)
    ```
    sudo apt install git
    ```
