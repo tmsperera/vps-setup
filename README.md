@@ -42,8 +42,6 @@ ssh -i ~/.ssh/id_ed25519 root@<server-ip>
 
 #### 2. Run the setup script
 
-> [tmsperera/vps-setup/setup-vps.sh](https://github.com/tmsperera/vps-setup/blob/main/setup-vps.sh)
-
 ```
 curl -fsSL https://raw.githubusercontent.com/tmsperera/vps-setup/refs/heads/main/setup-vps.sh | sudo -E \
 NEW_USER="appuser" \
@@ -52,6 +50,8 @@ SSH_PORT=22 \
 SWAP_SIZE=2G \
 bash
 ```
+
+> [tmsperera/vps-setup/setup-vps.sh](https://github.com/tmsperera/vps-setup/blob/main/setup-vps.sh)
 
 #### 3. Install Docker (Optional)
 
