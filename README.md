@@ -49,10 +49,10 @@ curl -fsSL <SCRIPT_URL> | sudo -E \
 
 2. Run the setup script
 
-    > [tmsperera/vps-setup/setup.sh](https://github.com/tmsperera/vps-setup/blob/main/setup.sh)
+    > [tmsperera/vps-setup/setup-vps.sh](https://github.com/tmsperera/vps-setup/blob/main/setup-vps.sh)
 
     ```
-    curl -fsSL https://raw.githubusercontent.com/tmsperera/vps-setup/refs/heads/main/setup.sh | sudo -E \
+    curl -fsSL https://raw.githubusercontent.com/tmsperera/vps-setup/refs/heads/main/setup-vps.sh | sudo -E \
     NEW_USER="appuser" \
     NEW_USER_PASSWORD="secret" \
     SSH_PORT=22 \
