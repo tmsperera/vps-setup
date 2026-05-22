@@ -38,21 +38,21 @@ echo "🚀 Starting VPS setup..."
 ########################################
 # SWAP
 ########################################
-# if swapon --show | grep -q "/swapfile"; then
-#   echo "✅ Swap already exists"
-# else
-#   echo "➕ Creating swap (${SWAP_SIZE})..."
+if swapon --show | grep -q "/swapfile"; then
+  echo "✅ Swap already exists"
+else
+  echo "➕ Creating swap (${SWAP_SIZE})..."
 
-#   fallocate -l "$SWAP_SIZE" /swapfile
-#   chmod 600 /swapfile
-#   mkswap /swapfile
-#   swapon /swapfile
+  fallocate -l "$SWAP_SIZE" /swapfile
+  chmod 600 /swapfile
+  mkswap /swapfile
+  swapon /swapfile
 
-#   if ! grep -q "^/swapfile" /etc/fstab; then
-#     # Make swap permanent
-#     echo "/swapfile none swap sw 0 0" >> /etc/fstab
-#   fi
-# fi
+  if ! grep -q "^/swapfile" /etc/fstab; then
+    # Make swap permanent
+    echo "/swapfile none swap sw 0 0" >> /etc/fstab
+  fi
+fi
 
 ########################################
 # USER
